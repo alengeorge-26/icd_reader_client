@@ -1,6 +1,7 @@
 import icd_server from "../../url/icd_server"
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import styles from './loginbox.module.css'
 
 const LoginBox = () => {
   const [username, setUserName] = useState("");
@@ -27,12 +28,11 @@ const LoginBox = () => {
 };
 
   return (
-    <div>
-      <h4>This is Login Box</h4>
-      <div>
-      <form onSubmit={loginFunc}>
+     
+    <div className={styles.loginContainer}>
+      <form onSubmit={loginFunc} className={styles.loginForm}>
         <div>
-          <label>Username:</label>
+          <label>Username : </label>
           <input
             type="text"
             value={username}
@@ -40,7 +40,7 @@ const LoginBox = () => {
           />
         </div>
         <div>
-          <label>Password:</label>
+          <label>Password : </label>
           <input
             type="password"
             value={password}
@@ -48,11 +48,10 @@ const LoginBox = () => {
           />
         </div>
 
-        {error && <p style={{ color: 'red' }}>{error}</p>}
+        {error && <p style={{ color: '#C70039 ' }}>{error}</p>}
 
         <button type="submit">Login</button>
       </form>
-      </div>
     </div>
   )
 }

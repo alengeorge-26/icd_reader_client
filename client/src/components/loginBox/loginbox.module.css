@@ -1,0 +1,32 @@
+.loginContainer{
+    display: flex;
+    flex-direction: column;
+    border: 3px solid rgba(2, 2, 17, 0.995);
+    padding: 20px;
+}
+
+.loginForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.loginForm input{
+    outline: none;
+    border: 2px solid rgba(0, 0, 0, 0.995);
+    padding: 10px;
+    border-radius: 10px;
+    margin: 10px;
+} 
+
+.loginForm button{
+    font-weight: 500;
+    outline: none;
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 10px;
+    cursor: pointer;
+    background: seagreen;
+    color: white;
+}

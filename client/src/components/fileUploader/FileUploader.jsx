@@ -1,9 +1,10 @@
 import { useState } from 'react'
-import './fileUploader.module.css'
+import styles from './fileuploader.module.css'
 import icd_server from '../../url/icd_server';
 const FileUploader = () => {
   const [filename, setFilename] = useState('Please select a file');
   const [file,setFile]=useState();
+  const [url,setUrl]=useState('');
  
   const handleFileChange = (e) => {
     e.preventDefault();
@@ -25,20 +26,23 @@ const FileUploader = () => {
         }
       });
 
-      console.log(res.data);
+      setUrl(res.data.file_url);
     }catch{
       console.error("Error calling the API");
     }
   }
 
   return (
-    <div>
-      <h4>This is File Uploader component</h4>
-      <div>
+    <div className={styles.fileUploaderForm}>
+
+      <div className={styles.fileInput}>
         <label htmlFor="file">Select a file : </label>
         <input id="file" type="file" onChange={handleFileChange} placeholder={filename}/>
       </div>
+
       <button onClick={uploadFile}>Upload</button>
+
+      {url && <button onClick={()=>window.open(url)}>Open URL</button>}
     </div>
   )
 }

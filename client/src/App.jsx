@@ -1,7 +1,6 @@
 import { BrowserRouter,Routes, Route} from "react-router-dom";
-import FileUploadPage from "./pages/FileUploadPage";
-import HomePage from "./pages/HomePage";
-
+import HomePage from "./pages/HomePage/HomePage";
+import FileUploadPage from "./pages/FileUploadPage/FileUploadPage";
 function App() {
   return (
     <>
