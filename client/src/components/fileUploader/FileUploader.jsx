@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './fileUploader.module.css'
+import icd_server from '../../url/icd_server';
 const FileUploader = () => {
   const [filename, setFilename] = useState('Please select a file');
   const [file,setFile]=useState();
@@ -11,16 +12,22 @@ const FileUploader = () => {
     setFilename(e.target.files[0].name);
   }
 
-  const uploadFile = (e) => {
+  const uploadFile = async(e) => {
     e.preventDefault();
 
     const formData = new FormData();
     formData.append('file',file);
 
     try{
-      //API to be called
+      const res = await icd_server.post('/file_api/upload_file/',formData,{
+        headers:{
+            'Content-Type':'multipart/form-data'
+        }
+      });
+
+      console.log(res.data);
     }catch{
-      //Exception to be handled
+      console.error("Error calling the API");
     }
   }
 
