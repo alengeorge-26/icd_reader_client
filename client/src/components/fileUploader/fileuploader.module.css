@@ -7,7 +7,7 @@
 }
 
 .fileInput{
-    border-radius: 10px;
+    border-radius: 5px;
     padding: 10px;
     background: sandybrown;
 }
@@ -22,7 +22,7 @@
 .fileUploaderForm button{
     width:30%;
     padding: 10px;
-    border-radius: 10px;
+    border-radius: 5px;
     border: none;
     background: seagreen;
     color: white;
