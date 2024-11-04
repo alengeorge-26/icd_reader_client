@@ -24,7 +24,23 @@
     padding: 10px;
     border-radius: 5px;
     border: none;
-    background: seagreen;
+    background: rgb(20, 60, 169);
     color: white;
     cursor: pointer;
+}
+
+.table{
+    border-collapse: collapse;
+}
+
+.table th, .table td{
+    border: 1px solid black;
+    padding: 5px;
+    background: sandybrown;
+}
+
+.tableHeader{
+    border: 1px solid black;
+    padding: 10px;
+    text-align: center;
 }

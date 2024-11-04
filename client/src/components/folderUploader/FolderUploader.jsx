@@ -1,19 +1,38 @@
-import { useState } from 'react'
+import { useState,useContext } from 'react'
 import styles from './folderuploader.module.css'
 import icd_server from '../../url/icd_server';
 import JSZip from 'jszip';
+import { UserContext } from '../../contextapi.js/user_context';
+import FolderLoadAnimation from '../folderLoadAnimation/FolderLoadAnimation';
 const FolderUploader = () => {
   const [folderFiles, setFolderFiles] = useState([]);
+  const [folderName, setFolderName] = useState('');
   const [msg, setMsg] = useState('');
-  const [pdf_url, setPdf_url] = useState([]);
+  const [success, setSuccess] = useState(false);
+  const [upload, setUpload] = useState(false);
+  const [pdf, setPdf] = useState([]);
+
+  const {user} = useContext(UserContext);
  
   const handleFolderSelect = (e) => {
+    e.preventDefault();
     const files = Array.from(e.target.files);
     setFolderFiles(files);
+
+    if (files.length > 0) {
+      const firstFilePath = files[0].webkitRelativePath; 
+      const folderPath = firstFilePath.split('/')[0];
+      setFolderName(folderPath);
+    }
   };
 
   const handleFolderUpload = async(e) => {
     e.preventDefault();
+
+    setPdf([])
+    setUpload(true)
+    setSuccess(false)
+    setMsg('')
 
     const zip = new JSZip();
     folderFiles.forEach((file) => {
@@ -23,7 +42,8 @@ const FolderUploader = () => {
     const blob = await zip.generateAsync({ type: "blob" });
 
     const formData = new FormData();
-    formData.append("folder", blob, "folder.zip");
+    formData.append('user',user);
+    formData.append('folder', blob, folderName);
 
     try{
       const res = await icd_server.post('/file_api/upload_folder/',formData,{
@@ -33,9 +53,11 @@ const FolderUploader = () => {
       });
 
       setMsg(res.data.message);
-      setPdf_url(res.data.pdf_url);
-      console.log(res.data.pdf_url);
+      setPdf(res.data.pdf);
+      setSuccess(res.data.success);
+      setUpload(false);
     }catch{
+      setUpload(false);
       console.error("Error calling the API");
     }
   }
@@ -52,9 +74,20 @@ const FolderUploader = () => {
 
       <span>{msg}</span>
 
-      {pdf_url?.map((url,index) => (
-        <button key={url} onClick={() => window.open(url)}>{index+1}</button>
-      ))}
+      {upload && !success && <span><FolderLoadAnimation/></span>}
+
+      <table className={styles.table}>
+        <tr className={styles.tableHeader}>
+          <th>File Name</th>
+          <th>File Status</th>
+        </tr>
+        {pdf?.map((file,index) => (
+          <tr key={index}>
+            <td onClick={() => window.open(file.url)}>{file.name}</td>
+            <td>{file.status}</td>
+          </tr>
+        ))}
+      </table>
     </div>
   )
 }

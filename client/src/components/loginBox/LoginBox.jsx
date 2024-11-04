@@ -2,11 +2,15 @@ import icd_server from "../../url/icd_server"
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from './loginbox.module.css'
+import { UserContext } from "../../contextapi.js/user_context";
+import { useContext } from "react";
 
 const LoginBox = () => {
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [error,setError] = useState(null);
+
+  const {setUser} = useContext(UserContext);
 
   const navigate = useNavigate();
 
@@ -20,9 +24,12 @@ const LoginBox = () => {
       );
     
       if(response.data.success)
+      {
+        setUser(username);
         navigate("/folderuploader");
+      }
     }catch (error){
-      setError('Login Failed')
+      setError(error.response.data.error);
       console.error("Error calling the API:", error);
     }
 };
