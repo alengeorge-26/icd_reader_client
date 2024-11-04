@@ -14,13 +14,13 @@ const LoginBox = () => {
     e.preventDefault();
 
     try{
-      const response = await icd_server.post("/api/login/",{
+      const response = await icd_server.post("/user_api/login/",{
         username,password
         },     
       );
     
       if(response.data.success)
-        navigate("/fileuploader");
+        navigate("/folderuploader");
     }catch (error){
       setError('Login Failed')
       console.error("Error calling the API:", error);
