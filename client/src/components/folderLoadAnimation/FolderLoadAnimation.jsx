@@ -6,7 +6,7 @@ const FolderLoadAnimation = () => {
             id="loading"
             className={style.loading}
             title="Loading Frame"
-            src="https://lottie.host/embed/37f08cd6-645b-4ddf-ad23-8e6c1b3577a7/huIadCvnur.json"
+            src="https://lottie.host/embed/a9046820-0733-440a-9bd1-9e290eca8719/XNmqO8L1rV.json"
         >
         </iframe>
     )

@@ -76,18 +76,18 @@ const FolderUploader = () => {
 
       {upload && !success && <span><FolderLoadAnimation/></span>}
 
-      <table className={styles.table}>
-        <tr className={styles.tableHeader}>
-          <th>File Name</th>
-          <th>File Status</th>
-        </tr>
-        {pdf?.map((file,index) => (
-          <tr key={index}>
-            <td onClick={() => window.open(file.url)}>{file.name}</td>
-            <td>{file.status}</td>
+      {pdf?.length > 0 &&  <table className={styles.table}>
+          <tr className={styles.tableHeader}>
+            <th>File Name</th>
+            <th>File Status</th>
           </tr>
-        ))}
-      </table>
+          {pdf?.map((file,index) => (
+            <tr key={index}>
+              <td onClick={() => window.open(file.url)}>{file.name}</td>
+              <td>{file.status}</td>
+            </tr>
+          ))}
+        </table>}
     </div>
   )
 }
