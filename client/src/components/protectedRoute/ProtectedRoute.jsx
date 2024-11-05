@@ -3,10 +3,10 @@ import FileUploadPage from '../../pages/FileUploadPage/FileUploadPage';
 
 const Protectedroute = () => {
 
-    const x = '';
+    const token = localStorage.getItem("access_token");
 
     return (
-        (x!==null? <FileUploadPage/> : <HomePage/>)
+        (token!==null? <FileUploadPage/> : <HomePage/>)
     )
 }
 
