@@ -11,7 +11,7 @@ const LoginBox = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
 
-  const { setUserId } = useContext(UserContext);
+  const { setUserId,setToken,setRefresh } = useContext(UserContext);
 
   const navigate = useNavigate();
 
@@ -30,6 +30,8 @@ const LoginBox = () => {
         localStorage.setItem("access_token", access_token);
         localStorage.setItem("refresh_token", refresh_token);
         const decoded = jwtDecode(access_token);
+        setToken(access_token);
+        setRefresh(refresh_token);
         setUserId(decoded.user_id);
         navigate("/folderuploader");
       }
