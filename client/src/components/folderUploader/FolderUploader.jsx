@@ -4,6 +4,7 @@ import icd_server from '../../url/icd_server';
 import JSZip from 'jszip';
 import { UserContext } from '../../contextapi.js/user_context';
 import FolderLoadAnimation from '../folderLoadAnimation/FolderLoadAnimation';
+
 const FolderUploader = () => {
   const [folderFiles, setFolderFiles] = useState([]);
   const [folderName, setFolderName] = useState('');
@@ -12,7 +13,7 @@ const FolderUploader = () => {
   const [upload, setUpload] = useState(false);
   const [pdf, setPdf] = useState([]);
 
-  const {user} = useContext(UserContext);
+  const {user_id} = useContext(UserContext);
  
   const handleFolderSelect = (e) => {
     e.preventDefault();
@@ -42,13 +43,14 @@ const FolderUploader = () => {
     const blob = await zip.generateAsync({ type: "blob" });
 
     const formData = new FormData();
-    formData.append('user',user);
+    formData.append('user',user_id);
     formData.append('folder', blob, folderName);
 
     try{
       const res = await icd_server.post('/file_api/upload_folder/',formData,{
         headers:{
-            'Content-Type':'multipart/form-data'
+            'Content-Type':'multipart/form-data',
+            'Authorization':'Bearer '+localStorage.getItem('access_token')
         }
       });
 
@@ -56,9 +58,9 @@ const FolderUploader = () => {
       setPdf(res.data.pdf);
       setSuccess(res.data.success);
       setUpload(false);
-    }catch{
+    }catch(err){
       setUpload(false);
-      console.error("Error calling the API");
+      alert(err.response.data.messages[0].message);
     }
   }
 

@@ -22,13 +22,14 @@ const FileUploader = () => {
     try{
       const res = await icd_server.post('/file_api/upload_file/',formData,{
         headers:{
-            'Content-Type':'multipart/form-data'
+            'Content-Type':'multipart/form-data',
+            'Authorization':'Bearer '+localStorage.getItem('access_token')
         }
       });
 
       setUrl(res.data.file_url);
-    }catch{
-      console.error("Error calling the API");
+    }catch(err){
+      alert(err.response.data.messages[0].message);
     }
   }
 

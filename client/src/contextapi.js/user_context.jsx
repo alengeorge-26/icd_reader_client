@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { UserContext } from './user_context';
 
 export const UserContextProvider = (props) => {
-    const [user, setUser] = useState(null);
+    const [user_id, setUserId] = useState(null);
 
-    const contextValues = {user, setUser};
+    const contextValues = {user_id, setUserId};
 
     return(
         <UserContext.Provider value={contextValues}>
