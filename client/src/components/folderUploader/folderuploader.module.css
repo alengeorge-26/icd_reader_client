@@ -35,19 +35,23 @@
     cursor: pointer;
 }
 
-.table{
-    border-collapse: collapse;
+.table {
+  background: #ffffff;
+  border-radius: 0.25em;
+  border-collapse: collapse;
+  margin: 1em;
 }
 
-.table th, .table td{
-    border: 1px solid black;
-    padding: 5px;
-    background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
-    cursor: pointer;
+.table th {
+  border-bottom: 1px solid #364043;
+  font-size: 0.85em;
+  font-weight: 600;
+  padding: 0.5em 1em;
+  text-align: left;
 }
 
-.tableHeader{
-    border: 1px solid black;
-    padding: 10px;
-    text-align: center;
+.table td {
+  font-weight: 400;
+  padding: 0.65em 1em;
+  border-bottom: 1px solid #364043;
 }

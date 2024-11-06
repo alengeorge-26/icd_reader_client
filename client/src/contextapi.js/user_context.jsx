@@ -4,7 +4,7 @@ import { UserContext } from './user_context';
 import icd_server from '../url/icd_server'
 
 export const UserContextProvider = (props) => {
-    const five_minutes = 2000;
+    const fifteen_minutes = 1000 * 60 * 15;
 
     const [token, setToken] = useState(()=>localStorage.getItem("access_token"));
     const [refresh, setRefresh] = useState(()=>localStorage.getItem("refresh_token"));
@@ -38,7 +38,7 @@ export const UserContextProvider = (props) => {
           else
             log_out();
         }catch{
-          alert("There was an error updating the token")
+          log_out();
         }
       }
 
@@ -54,11 +54,11 @@ export const UserContextProvider = (props) => {
         let interval = setInterval(() => {
             if(token !== null && refresh !== null)
                 updateToken();
-        },five_minutes);
+        },fifteen_minutes);
         
         return () => clearInterval(interval);
 
-    }, [token, refresh]);
+    }, [token,refresh]);
 
     return(
         <UserContext.Provider value={contextValues}>

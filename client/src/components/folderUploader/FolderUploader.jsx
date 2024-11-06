@@ -43,7 +43,7 @@ const FolderUploader = () => {
     const blob = await zip.generateAsync({ type: "blob" });
 
     const formData = new FormData();
-    formData.append('user',user_id);
+    formData.append('user_id',user_id);
     formData.append('folder', blob, folderName);
 
     try{
@@ -55,6 +55,7 @@ const FolderUploader = () => {
       });
 
       setMsg(res.data.message);
+      console.log(res.data.pdf);
       setPdf(res.data.pdf);
       setSuccess(res.data.success);
       setUpload(false);
@@ -80,11 +81,13 @@ const FolderUploader = () => {
 
       {pdf?.length > 0 &&  <table className={styles.table}>
           <tr className={styles.tableHeader}>
+            <th>File ID</th>
             <th>File Name</th>
             <th>File Status</th>
           </tr>
           {pdf?.map((file,index) => (
             <tr key={index}>
+              <td>{file.id}</td>
               <td onClick={() => window.open(file.url)}>{file.name}</td>
               <td>{file.status}</td>
             </tr>
