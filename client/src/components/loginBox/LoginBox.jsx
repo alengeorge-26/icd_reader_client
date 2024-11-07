@@ -11,7 +11,7 @@ const LoginBox = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
 
-  const { setUserId,setToken,setRefresh } = useContext(UserContext);
+  const { setUserId,setToken,setRefresh,setUserRole } = useContext(UserContext);
 
   const navigate = useNavigate();
 
@@ -32,8 +32,12 @@ const LoginBox = () => {
         const decoded = jwtDecode(access_token);
         setToken(access_token);
         setRefresh(refresh_token);
-        setUserId(decoded.user_id);
-        navigate("/folderuploader");
+        setUserId(decoded.user_id_id);
+        setUserRole(decoded.role_id);
+        if(decoded.role_id === "UPL")
+          navigate("/folderuploader");
+        else if(decoded.role_id === "VWR")
+          navigate("/viewfiles");
       }
     } catch (error) {
       setError(error.response.data.error);
