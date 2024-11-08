@@ -1,0 +1,30 @@
+@import url('../../styles/global.css');
+
+.navbar{
+    width: 100%;
+    color: #eaeefa ;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    background-color: var(--main_back_blue);
+}
+
+.items{
+    margin : 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+    gap:7px;
+}
+
+.navbut{
+    padding: 5px;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    background: var(--main_white);
+    font-family: monospace;
+}

@@ -11,7 +11,7 @@ const LoginBox = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
 
-  const { setUserId,setToken,setRefresh,setUserRole } = useContext(UserContext);
+  const { setUserId,setToken,setRefresh,setUserRole,setAuth } = useContext(UserContext);
 
   const navigate = useNavigate();
 
@@ -27,17 +27,19 @@ const LoginBox = () => {
       if (response.status === 200) {
         const access_token = response.data.access;
         const refresh_token = response.data.refresh;
+
         localStorage.setItem("access_token", access_token);
         localStorage.setItem("refresh_token", refresh_token);
+
         const decoded = jwtDecode(access_token);
+
         setToken(access_token);
         setRefresh(refresh_token);
         setUserId(decoded.user_id_id);
         setUserRole(decoded.role_id);
-        if(decoded.role_id === "UPL")
-          navigate("/folderuploader");
-        else if(decoded.role_id === "VWR")
-          navigate("/viewfiles");
+        setAuth(true);
+
+        navigate("/")
       }
     } catch (error) {
       setError(error.response.data.error);
@@ -65,7 +67,7 @@ const LoginBox = () => {
           />
         </div>
 
-        {error && <p style={{ color: "#C70039 " }}>{error}</p>}
+        {error && <p style={{ color: "#C70039 ",background: "#eaeefa ",padding: "5px",borderRadius: "5px", fontFamily: "monospace" }}>{error}</p>}
 
         <button type="submit">Login</button>
       </form>

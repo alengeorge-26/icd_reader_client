@@ -10,6 +10,7 @@ export const UserContextProvider = (props) => {
     const [refresh, setRefresh] = useState(()=>localStorage.getItem("refresh_token"));
     const [user_id, setUserId] = useState(null);
     const [user_role, setUserRole] = useState(null);
+    const [auth, setAuth] = useState(false);
 
     const log_out = () => {
         localStorage.removeItem("access_token");
@@ -18,6 +19,7 @@ export const UserContextProvider = (props) => {
         setRefresh(null);
         setUserId(null);
         setUserRole(null);
+        setAuth(false);
     }
 
     const updateToken = async () => {
@@ -49,6 +51,7 @@ export const UserContextProvider = (props) => {
         token, setToken,
         refresh, setRefresh,
         user_role, setUserRole,
+        auth, setAuth,
         log_out,
         updateToken
     };

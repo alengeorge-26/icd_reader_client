@@ -7,7 +7,7 @@ const ProtectedRoute_2 = () => {
 
     const token = localStorage.getItem("access_token")
     
-    return (token && user_role =='UPL' ? <Outlet /> : <Navigate to="/" />)
+    return (token && user_role == 'UPL' ? <Outlet /> : <Navigate to="/" />)
 };
 
 export default ProtectedRoute_2;

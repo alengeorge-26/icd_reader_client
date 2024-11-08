@@ -7,7 +7,7 @@ const ProtectedRoute_1 = () => {
 
     const token = localStorage.getItem("access_token")
     
-    return (token && user_role =='VWR' ? <Outlet /> : <Navigate to="/" />)
+    return (token && user_role == 'VWR' ? <Outlet /> : <Navigate to="/" />)
 };
 
 export default ProtectedRoute_1;
