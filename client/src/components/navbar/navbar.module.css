@@ -27,3 +27,34 @@
     cursor: pointer;
     background: var(--main_white);
 }
+
+.navbut {
+  background-color: initial;
+  border: 1px solid #b0efc7;
+  color: #b0efc7;
+  border-radius: 6px;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 16px;
+  line-height: 16px;
+  outline: 0;
+  text-align: center;
+  text-rendering: geometricprecision;
+  text-transform: none;
+  -webkit-user-select: none;
+  user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+}
+
+.navbut:hover,
+.navbut:active {
+  background-color: initial;
+  border: 1px solid #fb160e;
+  color: #fb160e;
+}
+
+.navbut:active {
+  opacity: .5;
+}
