@@ -43,7 +43,6 @@ const LoginBox = () => {
       }
     } catch (error) {
       setError(error.response.data.error);
-      console.error("Error calling the API:", error);
     }
   };
 
@@ -67,7 +66,7 @@ const LoginBox = () => {
           />
         </div>
 
-        {error && <p style={{ color: "#C70039 ",background: "#eaeefa ",padding: "5px",borderRadius: "5px", fontFamily:"sans-serif" }}>{error}</p>}
+        {error && <p style={{ color: "#C70039 ",background: "#eaeefa ",padding: "5px",borderRadius: "5px", fontSize:"12px" }}>{error}</p>}
 
         <button type="submit">Login</button>
       </form>

@@ -53,15 +53,14 @@ const FolderUploader = () => {
             'Authorization':'Bearer '+localStorage.getItem('access_token')
         }
       });
-
+      console.log(res.data)
       setMsg(res.data.message);
-      console.log(res.data.pdf);
       setPdf(res.data.pdf);
       setSuccess(res.data.success);
       setUpload(false);
-    }catch(err){
+    }catch{
       setUpload(false);
-      alert(err.response.data.messages[0].message);
+      alert('The folder could not be uploaded. Please try again.');
     }
   }
 

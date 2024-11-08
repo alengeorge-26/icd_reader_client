@@ -27,9 +27,12 @@ const FileUploader = () => {
         }
       });
 
-      setUrl(res.data.file_url);
-    }catch(err){
-      alert(err.response.data.messages[0].message);
+      if(res.status==200)
+        setUrl(res.data.file_url)
+      else
+        setUrl(res.data.message)
+    }catch{
+      alert('The file could not be uploaded.Please try again.');
     }
   }
 
