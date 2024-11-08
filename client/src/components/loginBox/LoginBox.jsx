@@ -67,7 +67,7 @@ const LoginBox = () => {
           />
         </div>
 
-        {error && <p style={{ color: "#C70039 ",background: "#eaeefa ",padding: "5px",borderRadius: "5px", fontFamily: "monospace" }}>{error}</p>}
+        {error && <p style={{ color: "#C70039 ",background: "#eaeefa ",padding: "5px",borderRadius: "5px", fontFamily:"sans-serif" }}>{error}</p>}
 
         <button type="submit">Login</button>
       </form>
